@@ -20,7 +20,7 @@
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
 function findElement(arr, value) {
-  return arr.indexOf(value)
+  return arr.indexOf(value);
 }
 
 /**
@@ -51,7 +51,7 @@ function generateOdds(/* len */) {
  *    [] => []
  */
 function doubleArray(arr) {
-  return arr.concat(arr)
+  return arr.concat(arr);
 }
 
 /**
@@ -66,7 +66,7 @@ function doubleArray(arr) {
  *    [] => []
  */
 function getArrayOfPositives(arr) {
-  return arr.filter(x => x > 0)
+  return arr.filter((x) => x > 0);
 }
 
 /**
@@ -81,7 +81,7 @@ function getArrayOfPositives(arr) {
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
 function getArrayOfStrings(arr) {
-  return arr.filter(x => typeof x === 'string')
+  return arr.filter((x) => typeof x === 'string');
 }
 
 /**
@@ -98,7 +98,7 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-  return arr.filter(x => !!x)
+  return arr.filter((x) => !!x);
 }
 
 /**
@@ -113,7 +113,7 @@ function removeFalsyValues(arr) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-return arr.map(x => x.toUpperCase())
+  return arr.map((x) => x.toUpperCase());
 }
 
 /**
@@ -127,7 +127,7 @@ return arr.map(x => x.toUpperCase())
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
-  return arr.map(x => x.length)
+  return arr.map((x) => x.length);
 }
 
 /**
@@ -142,7 +142,7 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(arr, item, index) {
-  return arr.splice(index, 0, item)
+  return arr.splice(index, 0, item);
 }
 
 /**
@@ -156,7 +156,7 @@ function insertItem(arr, item, index) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
 function getHead(arr, n) {
-return arr.slice(0, n)
+  return arr.slice(0, n);
 }
 
 /**
@@ -170,7 +170,7 @@ return arr.slice(0, n)
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-  return arr.slice(arr.length - n, arr.length)
+  return arr.slice(arr.length - n, arr.length);
 }
 
 /**
@@ -209,7 +209,7 @@ function toCsvText(/* arr */) {
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-  return arr.map(x => x * x)
+  return arr.map((x) => x * x);
 }
 
 /**

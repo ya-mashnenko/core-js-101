@@ -87,7 +87,7 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-  return -b/a
+  return -b / a;
 }
 
 /**
@@ -125,7 +125,7 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     0     => 0
  */
 function getLastDigit(value) {
-  return value % 10
+  return value % 10;
 }
 
 /**
@@ -140,7 +140,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-  return parseFloat(value)
+  return parseFloat(value);
 }
 
 /**
@@ -218,7 +218,7 @@ function isPrime(/* n */) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  return !!parseFloat(value)? parseFloat(value): def
+  return parseFloat(value) ? parseFloat(value) : def;
 }
 
 module.exports = {
