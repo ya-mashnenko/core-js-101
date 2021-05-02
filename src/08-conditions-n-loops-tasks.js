@@ -280,7 +280,7 @@ function getDigitalRoot(num) {
   }
 
   const arr = num.toString().split('');
-  const sum = arr.reduce((a, b) => parseInt(a) + parseInt(b));
+  const sum = arr.reduce((a, b) => Number(a) + Number(b));
   return sum < 10 ? sum : getDigitalRoot(sum);
 }
 
