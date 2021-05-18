@@ -63,8 +63,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.substring(7, value.length - 1);
 }
 
 /**
@@ -127,8 +127,11 @@ function repeatString(value, count) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  return (
+    str.slice(0, str.indexOf(value))
+    + str.slice(str.indexOf(value) + value.length, str.length)
+  );
 }
 
 /**
@@ -142,8 +145,8 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, str.length - 1);
 }
 
 /**
@@ -175,8 +178,8 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -222,8 +225,40 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const MIN_CODE_UPPERCASE = 64;
+  const MAX_CODE_UPPERCASE = 90;
+  const MIN_CODE_LOWERCASE = 96;
+  const MAX_CODE_LOWERCASE = 122;
+
+  const isUpperCase = (letter) => letter === letter.toUpperCase();
+
+  const shifted = str.split('').map((letter) => {
+    if (!letter.match(/[A-Z]/gi)) {
+      return letter;
+    }
+
+    const letterCode = letter.charCodeAt();
+    let finalCode;
+    if (isUpperCase(letter)) {
+      if (letterCode + 13 <= MAX_CODE_UPPERCASE) {
+        finalCode = letterCode + 13;
+      } else {
+        finalCode = 13 - (MAX_CODE_UPPERCASE - letterCode) + MIN_CODE_UPPERCASE;
+      }
+    } else if (letterCode + 13 <= MAX_CODE_LOWERCASE) {
+      finalCode = letterCode + 13;
+    } else {
+      finalCode = 13 - (MAX_CODE_LOWERCASE - letterCode) + MIN_CODE_LOWERCASE;
+    }
+    return finalCode;
+  });
+
+  const result = shifted
+    .map((num) => (typeof num === 'number' ? String.fromCharCode(num) : num))
+    .join('');
+
+  return result;
 }
 
 /**
@@ -239,8 +274,8 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -267,8 +302,62 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cardsArr = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  return cardsArr.indexOf(value);
 }
 
 module.exports = {
