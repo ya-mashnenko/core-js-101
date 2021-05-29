@@ -93,8 +93,8 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return a + b > c && a + c > b && b + c > a;
 }
 
 /**
@@ -129,8 +129,12 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const overlapX = (rect1.left >= rect2.left && rect1.left <= rect2.left + rect2.width)
+    || (rect2.left >= rect1.left && rect2.left <= rect1.left + rect1.width);
+  const overlapY = (rect1.top >= rect2.top && rect1.top <= rect2.top + rect2.height)
+    || (rect2.top >= rect1.top && rect2.top <= rect1.top + rect1.height);
+  return overlapX && overlapY;
 }
 
 /**
@@ -159,8 +163,13 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const { x, y } = point;
+  const { center, radius } = circle;
+  const d = Math.sqrt(
+    Math.abs(x - center.x) ** 2 + Math.abs(y - center.y) ** 2,
+  );
+  return d < radius;
 }
 
 /**
@@ -174,8 +183,12 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const arr = str.split('');
+  return arr.filter(
+    (letter, i) => !arr.slice(i + 1, arr.length).includes(letter)
+      && !arr.slice(0, i).includes(letter),
+  )[0];
 }
 
 /**
@@ -256,8 +269,24 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const cardNumber = `${ccn}`
+    .split('')
+    .reverse()
+    .map((n, i) => {
+      if (!(i % 2)) {
+        return +n;
+      }
+      let k = n * 2;
+      if (k > 9) {
+        k = `${k}`
+          .split('')
+          .reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
+      }
+      return k;
+    })
+    .reduce((a, b) => a + b);
+  return !(cardNumber % 10);
 }
 
 /**
