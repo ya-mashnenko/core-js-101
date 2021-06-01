@@ -213,8 +213,13 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  if (a > b) {
+    return `${isStartIncluded ? '[' : '('}${b}, ${a}${
+      isEndIncluded ? ']' : ')'
+    }`;
+  }
+  return `${isStartIncluded ? '[' : '('}${a}, ${b}${isEndIncluded ? ']' : ')'}`;
 }
 
 /**
@@ -396,8 +401,10 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const dotproduct = (a, b) => a.map((x, i) => a[i] * b[i]).reduce((m, n) => m + n);
+  const transpose = (a) => a[0].map((x, i) => a.map((y) => y[i]));
+  return m1.map((x) => transpose(m2).map((y) => dotproduct(x, y)));
 }
 
 /**
@@ -430,8 +437,38 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  for (let i = 0; i < position.length; i += 1) {
+    if (
+      position[i][0]
+      && position[i][0] === position[i][1]
+      && position[i][0] === position[i][2]
+    ) {
+      return position[i][0];
+    }
+    if (
+      position[0][i]
+      && position[0][i] === position[1][i]
+      && position[0][i] === position[2][i]
+    ) {
+      return position[0][i];
+    }
+  }
+  if (
+    position[0][0]
+    && position[0][0] === position[1][1]
+    && position[0][0] === position[2][2]
+  ) {
+    return position[0][0];
+  }
+  if (
+    position[0][2]
+    && position[0][2] === position[1][1]
+    && position[0][2] === position[2][0]
+  ) {
+    return position[0][2];
+  }
+  return undefined;
 }
 
 module.exports = {
